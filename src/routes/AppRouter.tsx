@@ -7,12 +7,13 @@ import Home from "../pages/Home";
 import IniciarSesion from "../pages/IniciarSesion";
 import RegistrarU from "../pages/Registro";
 
-// Dashboard
+// Dashboard ______________________________________________________________________________________
 import { HomeDashboard } from "../pages/dashboard/HomeDashboard";
 import Perfil from "../pages/dashboard/Perfil";
 import Calculadora from "../pages/dashboard/calculadoras/Calculadora";
 import { AgregarPersonal } from "../pages/dashboard/usuarios/AgregarEmpleados";
 import { AgregarActi } from "../pages/dashboard/actividades/AgregarActi";
+import { ListActivi } from "../pages/dashboard/actividades/ListAct";
 import { useState } from "react";
 
 const AppRouter = () => {
@@ -48,6 +49,7 @@ const AppRouter = () => {
           <Route path="calculadora" element={<Calculadora />} />
           <Route path="Agregarempleados" element={<AgregarPersonal />} />
           <Route path="AgregarActi" element={<AgregarActi />} />
+          <Route path="ListActivi" element={<ListActivi />} />
         </Route>
       </Routes>
     </Router>

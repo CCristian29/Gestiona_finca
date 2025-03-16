@@ -1,8 +1,8 @@
-import { useState, useRef, useEffect } from "react";
+import{ useState, useRef, useEffect } from "react";
 import { LogOut, Bell, Search, User, Settings, HelpCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 
-export function NavbarDas() {
+export function NavBarDas() {
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -18,7 +18,6 @@ export function NavbarDas() {
     setIsProfileMenuOpen(false);
   };
 
-  // Cerrar el menú al hacer clic fuera
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -31,8 +30,8 @@ export function NavbarDas() {
   }, []);
 
   return (
-    <nav className="bg-white shadow-md px-6 py-4">
-      <div className="max-w-full mx-auto flex justify-between items-center">
+    <nav className="bg-white shadow-md px-4 sm:px-6 py-3">
+      <div className="max-w-full mx-auto flex flex-row-reverse sm:flex-row justify-between items-center">
         {/* Buscador */}
         <div className="flex-1 max-w-xl hidden md:block">
           <div className="relative">
@@ -48,8 +47,8 @@ export function NavbarDas() {
           </div>
         </div>
 
-        {/* Notificaciones y Perfil */}
-        <div className="flex items-center space-x-6">
+        {/* Notificaciones y Perfil - Siempre a la derecha */}
+        <div className="flex items-center space-x-6 ml-auto sm:ml-0">
           <button className="relative text-gray-600 hover:text-green-800 transition-colors duration-200">
             <Bell size={20} />
             <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
@@ -63,7 +62,7 @@ export function NavbarDas() {
               className="flex items-center space-x-3 focus:outline-none"
             >
               <div className="flex items-center space-x-3">
-                <div className="flex flex-col items-end">
+                <div className="hidden sm:flex flex-col items-end">
                   <span className="text-sm font-medium text-gray-900">
                     {userProfile.name}
                   </span>

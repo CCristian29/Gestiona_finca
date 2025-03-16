@@ -1,7 +1,7 @@
 import { Coffee, LineChart, Users, Sprout } from "lucide-react";
-import HeroSection from "../components/HeroSection";
-import FeatureCard from "../components/FeactureCard";
-import Footer from "../components/Footer";
+import HeroSection from "@components/HeroSection";
+import FeatureCard from "@components/FeactureCard";
+import Footer from "@components/Footer";
 const features = [
   {
     icon: <Sprout className="w-12 h-12 text-green-600" />,

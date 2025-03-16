@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   TextField,
   Button,
@@ -6,80 +7,87 @@ import {
   FormControl,
   InputLabel,
 } from "@mui/material";
-
+import axios from "axios";
 
 const RegistrarU = () => {
+  const [nombre, setNombre] = useState("");
+  const [apellido, setApellido] = useState("");
+  const [rol, setRol] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleRegister = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/register",
+        {
+          nombre,
+          apellido,
+          rol,
+          email,
+          password,
+        }
+      );
+
+      alert(response.data.message);
+    } catch (error: any) {
+      alert(error.response?.data?.message || "Error al registrar");
+    }
+  };
+
   return (
-    <div className="flex items-center justify-center h-[calc(100vh-4.5rem)] bg-gray-100">
+    <div className="flex items-center justify-center h-[100vh] bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center">Registrar</h2>
 
-        <form>
-          <div className="mb-4">
-            <TextField
-              className="w-full"
-              id="nombre"
-              label="Nombre"
-              variant="outlined"
-              type="text"
-              required
-              margin="normal"
-            />
-            <TextField
-              className="w-full"
-              id="apellido"
-              label="Apellido"
-              variant="outlined"
-              type="text"
-              required
-              margin="normal"
-            />
+        <form onSubmit={handleRegister}>
+          <TextField
+            className="w-full"
+            label="Nombre"
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value)}
+            required
+          />
+          <TextField
+            className="w-full"
+            label="Apellido"
+            value={apellido}
+            onChange={(e) => setApellido(e.target.value)}
+            required
+          />
 
-            <div className="mt-4 mb-1">
-              <FormControl className="w-full">
-                <InputLabel id="demo-controlled-open-select-label">
-                  Selecione su rol
-                </InputLabel>
-                <Select
-                  labelId="demo-controlled-open-select-label"
-                  id="demo-controlled-open-select"
-                
-                  label="Selecione su rol"
-               
-                >
-                  <MenuItem value="">
-                    <em>Seleccione un rol</em>
-                  </MenuItem>
-                  <MenuItem value={10}>Administrador</MenuItem>
-                  <MenuItem value={20}>Empleado</MenuItem>
-                 
-                </Select>
-              </FormControl>
-            </div>
-
-            <TextField
-              className="w-full"
-              id="email"
-              label="Correo"
-              variant="outlined"
-              type="email"
+          <FormControl className="w-full mt-4">
+            <InputLabel>Rol</InputLabel>
+            <Select
+              value={rol}
+              onChange={(e) => setRol(e.target.value as string)}
               required
-              margin="normal"
-            />
+            >
+              <MenuItem value="Administrador">Administrador</MenuItem>
+              <MenuItem value="Empleado">Empleado</MenuItem>
+            </Select>
+          </FormControl>
 
-            <TextField
-              className="w-full"
-              id="password"
-              label="Contraseña"
-              variant="outlined"
-              type="password"
-              required
-              margin="normal"
-            />
-          </div>
+          <TextField
+            className="w-full"
+            label="Correo"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <TextField
+            className="w-full"
+            label="Contraseña"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
 
           <Button
-            className="w-full"
+            className="w-full mt-4"
             variant="contained"
             color="success"
             type="submit"

@@ -75,7 +75,7 @@ export function SideBar({ isOpen, toggleSidebar }: SideBarProps) {
         {
           title: "Ver actividades",
           icon: <ListVideo size={18} />,
-          path: "/dashboard/tools/metrics",
+          path: "/dashboard/ListActivi",
         },
       ],
     },
@@ -86,7 +86,7 @@ export function SideBar({ isOpen, toggleSidebar }: SideBarProps) {
         {
           title: "Calcular pagos",
           icon: <Wrench size={18} />,
-          path: "/dashboard/tools/maintenance",
+          path: "/dashboard/calculadora",
         },
         {
           title: "Metrics",
